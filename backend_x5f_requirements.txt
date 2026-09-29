@@ -1,0 +1,8 @@
+fastapi==0.110.0
+uvicorn==0.29.0
+python-multipart
+openai-whisper
+pydub
+moviepy==1.0.3
+ffmpeg-python
+yt-dlp

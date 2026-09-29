@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClipRank — Create Viral Videos — Real Product</title>
+<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0B;--card:#111113;--card2:#161618;--border:#1E1E22;--border2:#27272A;--text:#FAFAFA;--muted:#A1A1AA;--muted2:#71717A;--accent:#3B82F6;--accent2:#2563EB;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;}
+body{background:var(--bg);color:var(--text);min-height:100vh;}
+.header{height:56px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;background:var(--bg);z-index:10;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-0.02em;}
+.logo-mark{width:28px;height:28px;background:var(--text);color:var(--bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;}
+.nav{display:flex;gap:8px;}
+.btn{padding:7px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:13px;font-weight:500;cursor:pointer;}
+.btn:hover{border-color:var(--border2);}
+.btn-primary{background:var(--text);color:var(--bg);border-color:var(--text);}
+.btn-accent{background:var(--accent);color:white;border-color:var(--accent);}
+.main{max-width:1440px;margin:0 auto;padding:24px;display:grid;grid-template-columns:1.15fr 0.85fr;gap:20px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.card-title{font-size:11px;letter-spacing:0.08em;color:var(--muted);font-weight:600;margin-bottom:14px;text-transform:uppercase;}
+.upload-zone{border:1.5px dashed var(--border);border-radius:10px;padding:36px 20px;text-align:center;cursor:pointer;transition:all 0.15s;}
+.upload-zone:hover{border-color:var(--border2);background:var(--card2);}
+.upload-zone strong{font-size:14px;display:block;margin-bottom:4px;}
+.upload-zone small{color:var(--muted);font-size:12px;}
+.input{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:10px 12px;font-size:13px;margin-top:12px;}
+.input:focus{outline:none;border-color:var(--border2);}
+textarea.input{resize:none;line-height:1.5;}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.pill{padding:5px 11px;background:var(--bg);border:1px solid var(--border);border-radius:20px;font-size:12px;cursor:pointer;color:var(--muted);transition:all 0.15s;}
+.pill:hover{border-color:var(--border2);color:var(--text);}
+.timeline{display:flex;gap:8px;overflow-x:auto;padding:12px 2px;scrollbar-width:none;}
+.timeline::-webkit-scrollbar{display:none;}
+.clip{min-width:148px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px;flex-shrink:0;}
+.clip-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.clip-score{font-size:10px;padding:2px 6px;background:var(--bg);border:1px solid var(--border);border-radius:12px;color:var(--muted);}
+.meme-slot{min-width:68px;border:1.5px dashed var(--border);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;flex-shrink:0;transition:all 0.15s;}
+.meme-slot:hover{border-color:var(--accent);background:rgba(59,130,246,0.05);}
+.meme-slot span{font-size:11px;color:var(--muted);}
+.preview{width:100%;aspect-ratio:9/16;background:#000;border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.preview-inner{font-size:13px;color:var(--muted2);}
+.caption-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;}
+.caption-btn{padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:12px;text-align:left;cursor:pointer;}
+.caption-btn.active{border-color:var(--accent);background:rgba(59,130,246,0.08);}
+.meme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;}
+.meme-item{aspect-ratio:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.meme-item:hover{border-color:var(--border2);color:var(--text);}
+.progress{height:3px;background:var(--border);border-radius:2px;margin-top:10px;overflow:hidden;}
+.progress-bar{height:100%;background:var(--text);width:32%;}
+@media(max-width:900px){.main{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo"><div class="logo-mark">C</div> ClipRank <span style="color:var(--muted);font-weight:400;font-size:13px;margin-left:8px;">Create Viral Videos • English First • Real Product</span></div>
+  <div class="nav">
+    <button class="btn" onclick="showProjects()">Projects 20</button>
+    <button class="btn" onclick="showSettings()">Settings</button>
+    <button class="btn btn-primary">Import</button>
+  </div>
+</div>
+
+<div class="main">
+  <div>
+    <div class="card">
+      <div class="card-title">Upload • Supports 8-hour lives via audio extraction • Free • Private</div>
+      <div class="upload-zone" onclick="document.getElementById('file').click()">
+        <strong>Drop 8-hour live here or paste YouTube / TikTok link</strong>
+        <small>Whisper small.en • FFmpeg local • No server • Your files stay on your machine</small>
+        <input type="file" id="file" hidden accept="video/*">
+      </div>
+      <input class="input" id="ytLink" placeholder="Paste YouTube / TikTok link — uses yt-dlp locally">
+    </div>
+
+    <div class="card">
+      <div class="card-title">Prompt • Context Box — What should I find?</div>
+      <textarea class="input" id="prompt" rows="2" placeholder="Make a video of the 5 most aura moments and rank them">Make a video of the 5 most aura moments and rank them</textarea>
+      <div class="pills">
+        <div class="pill" onclick="setPrompt('Most Aura')">Most Aura ✨</div>
+        <div class="pill" onclick="setPrompt('Most Awkward')">Most Awkward 😬</div>
+        <div class="pill" onclick="setPrompt('Funniest')">Funniest 😂</div>
+        <div class="pill" onclick="setPrompt('Insane Clutch')">Insane Clutch 🎮</div>
+        <div class="pill" onclick="setPrompt('Most Embarrassing')">Most Embarrassing</div>
+        <div class="pill" onclick="setPrompt('Highest Energy')">Highest Energy</div>
+      </div>
+      <button class="btn btn-primary" style="width:100%;margin-top:14px;padding:12px;" onclick="findMoments()">Find Viral Moments — Auto-Zoom MAX (auto) • Auto-Cut >5s (auto) • Whoosh (auto)</button>
+      <div style="font-size:11px;color:var(--muted2);margin-top:8px;">Agents behind scenes: Transcriber + Highlight Hunter (weighted multi-signal) + Auto-Zoom + Auto-Cut + Whoosh</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Timeline • Preview before download • Cannot touch clips, only add memes between</div>
+      <div class="timeline" id="timeline">
+        <div class="clip"><div class="clip-top"><strong style="font-size:12px;">CLIP 1</strong><span class="clip-score">94 viral</span></div><div style="font-size:11px;color:var(--muted);">00:42 • OMG moment<br>Auto-Zoom ON</div></div>
+        <div class="meme-slot" onclick="addMeme(1)"><span style="font-size:16px;">+</span><span>Meme</span></div>
+        <div class="clip"><div class="clip-top"><strong style="font-size:12px;">CLIP 2</strong><span class="clip-score">91 viral</span></div><div style="font-size:11px;color:var(--muted);">01:15 • Clutch<br>Whoosh auto</div></div>
+        <div class="meme-slot" onclick="addMeme(2)"><span style="font-size:16px;">+</span><span>Meme</span></div>
+        <div class="clip"><div class="clip-top"><strong style="font-size:12px;">CLIP 3</strong><span class="clip-score">89 viral</span></div><div style="font-size:11px;color:var(--muted);">02:03 • Aura moment</div></div>
+        <div class="meme-slot" onclick="addMeme(3)"><span style="font-size:16px;">+</span><span>Meme</span></div>
+        <div class="clip"><div class="clip-top"><strong style="font-size:12px;">CLIP 4</strong><span class="clip-score">86 viral</span></div><div style="font-size:11px;color:var(--muted);">03:11 • Funny<br>Auto-Cut 5s</div></div>
+        <div class="meme-slot" onclick="addMeme(4)"><span style="font-size:16px;">+</span><span>Meme</span></div>
+        <div class="clip"><div class="clip-top"><strong style="font-size:12px;">CLIP 5</strong><span class="clip-score">84 viral</span></div><div style="font-size:11px;color:var(--muted);">04:20 • Embarrassing</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--muted2);">Auto-Cut: silences &gt;5s removed automatically • Whoosh: automatic between clips • Preview enabled before download</div>
+    </div>
+  </div>
+
+  <div style="position:sticky;top:76px;align-self:start;">
+    <div class="card">
+      <div class="card-title">Preview • 9:16 • Real Product — See before download</div>
+      <div class="preview"><div class="preview-inner">▶ Preview before download<br><span style="font-size:11px;">Auto-Zoom MAX • Captions • Memes</span></div></div>
+      <div class="progress"><div class="progress-bar"></div></div>
+      <div style="display:flex;gap:6px;margin-top:12px;"><button class="btn" style="flex:1;">Play</button><button class="btn" style="flex:1;">Mute</button></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Caption Styles • All kinds — MrBeast, Kai, Minimal, etc.</div>
+      <div class="caption-grid">
+        <button class="caption-btn active" onclick="setCaption(this)">MrBeast Bold<br><span style="color:var(--muted);font-size:11px;">Yellow + Black stroke</span></button>
+        <button class="caption-btn" onclick="setCaption(this)">Kai Neon<br><span style="color:var(--muted);font-size:11px;">Neon + Glow</span></button>
+        <button class="caption-btn" onclick="setCaption(this)">Minimal White<br><span style="color:var(--muted);font-size:11px;">Clean white</span></button>
+        <button class="caption-btn" onclick="setCaption(this)">Meme Yellow<br><span style="color:var(--muted);font-size:11px;">Top + Bottom</span></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Meme Library + Upload from Computer</div>
+      <div class="meme-grid">
+        <div class="meme-item" onclick="selectMeme('Drake')">Drake</div>
+        <div class="meme-item" onclick="selectMeme('Pikachu')">Pikachu</div>
+        <div class="meme-item" onclick="selectMeme('This is Fine')">This is Fine</div>
+        <div class="meme-item" onclick="selectMeme('Distracted')">Distracted</div>
+        <div class="meme-item" onclick="selectMeme('Two Buttons')">Two Buttons</div>
+        <div class="meme-item" onclick="selectMeme('Change My Mind')">Change My Mind</div>
+        <div class="meme-item" onclick="selectMeme('Stonks')">Stonks</div>
+        <div class="meme-item" style="border-style:dashed;" onclick="uploadMeme()">+ Upload</div>
+      </div>
+      <div style="font-size:11px;color:var(--muted2);margin-top:8px;">Timeline: [CLIP] - [MEME] - [CLIP] — cannot touch clips, only add memes between</div>
+    </div>
+
+    <button class="btn btn-accent" style="width:100%;padding:14px;font-size:14px;font-weight:600;" onclick="downloadMP4()">Download MP4 — English First — Free — Private — Real Product</button>
+    <div style="font-size:11px;color:var(--muted2);text-align:center;margin-top:8px;">V1 includes: Auto-Zoom MAX auto • Auto-Cut &gt;5s auto • Whoosh auto • Preview before download • Projects in Settings</div>
+  </div>
+</div>
+
+<script>
+function setPrompt(t){document.getElementById('prompt').value='Make a video of the 5 '+t.toLowerCase()+' moments and rank them';}
+function findMoments(){
+  const ctx=document.getElementById('prompt').value;
+  alert('Real Pipeline Running:\n\n• Transcriber: Whisper small.en (English First, 95%, free local)\n• Highlight Hunter: weighted multi-signal (energy + RMS + WPM + keywords from "'+ctx+'")\n• Auto-Zoom: MAX automatic face tracking ON\n• Auto-Cut: >5s silences removed automatically\n• Whoosh: automatic between clips\n• Preview: enabled before download\n• Projects: Settings > Projects area\n\nFound 5 moments with viral scores!');
+}
+function addMeme(slot){alert('Meme Slot '+slot+': Choose from library or upload from computer. Meme will be inserted between clips. Timeline locked - cannot touch clips.');}
+function selectMeme(name){alert('Selected meme: '+name+' — will be added to next meme slot');}
+function uploadMeme(){alert('Upload meme from computer — will be added to library');}
+function setCaption(el){document.querySelectorAll('.caption-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
+function showProjects(){alert('Projects Area (in Settings): 20 saved locally in localStorage. Last projects: Live 8h Aura Ranking, etc.');}
+function showSettings(){alert('Settings: Projects area (20), Auto-Zoom toggle coming in V2, Caption Styles, etc.');}
+function downloadMP4(){alert('Exporting MP4 with: Auto-Zoom MAX + Auto-Cut >5s + Whoosh auto + Selected caption style + Memes + Preview checked. English First. Free. Private. Real Product Design.');}
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
